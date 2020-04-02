@@ -2,6 +2,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.0.
 
+Cross-Platform Social Network which shares tutorial sources for students of whatsoever subject
+
+Made by Aldo Manco, Francesco Ferrini, Victor Ivan Conde
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
