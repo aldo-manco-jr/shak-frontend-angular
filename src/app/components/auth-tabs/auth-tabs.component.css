@@ -1,3 +1,17 @@
-.bodyDiv {
-  height: 100vh;
+.bodyDiv{
+  height: 120vh;
+}
+
+div.bodyContainer{
+  margin-top: 50px !important;
+}
+
+.tabs a{
+  color: #00796b;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.auth-content{
+  height: 523px !important;
 }

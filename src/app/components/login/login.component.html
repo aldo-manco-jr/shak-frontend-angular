@@ -1,1 +1,43 @@
-<p>login works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col s10 offset-s1" id="panel">
+
+      <div class="progress" *ngIf="showSpinner">
+        <div class="indeterminate"></div>
+      </div>
+
+      <h3 id="title">LOGIN</h3>
+
+      <div id="errorMsg" *ngIf="errorMessage">
+        <span>{{errorMessage}}</span>
+      </div>
+
+      <form class="col s12" [formGroup]="login_form" novalidate (ngSubmit)="loginUser()">
+
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="username_login" type="text" formControlName="username">
+            <label for="username_login">Username</label>
+            <span class="error" *ngIf="!login_form.controls['username'].valid && login_form.controls['username'].touched">
+              Il nome utente è richiesto.
+            </span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="password_login" type="password" formControlName="password">
+            <label for="password_login">Password</label>
+            <span class="error" *ngIf="!login_form.controls['password'].valid && login_form.controls['password'].touched">
+              La password è richiesta.
+            </span>
+          </div>
+        </div>
+
+        <button class="btn waves-effect" id="login_btn" [disabled]="!login_form.valid">Login</button>
+
+      </form>
+    </div>
+
+  </div>
+</div>
