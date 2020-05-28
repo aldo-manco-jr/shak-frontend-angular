@@ -14,8 +14,21 @@ export class SignupComponent implements OnInit {
   errorMessage: string;
   showSpinner = false;
 
+  /*
+    Istanze condivise:
+    - (authService) -> service che gestisce la comunicazione dei dati tra front-end e back-end
+    - (formBuilder) -> tipo di dato che permette la creazione di un form e l'impostazione di attributi
+    - (router) -> istanza del routing necessaria a spostarsi nella homepage
+   */
+
   constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router) {
   }
+
+  /*
+    Al caricamento del componente
+    i dati del form: {email, username, password}
+    vengono inizializzati vuoti e contrassegnati come obbligatori
+   */
 
   ngOnInit(): void {
     this.init();
@@ -28,6 +41,18 @@ export class SignupComponent implements OnInit {
       password: ['', Validators.required]
     })
   }
+
+  /*
+    (signUpUser())
+    viene visualizzata la barra di caricamento
+    e i dati inseriti nel form della signup
+    vengono passati al metodo (registerUser()) di auth.service.ts
+    il quale, una volta ricevuti i dati, li manda sul server della nostra web-app, che si occuperà dell'elaborazione
+    una volta che questa operazione termina,
+    se i dati inseriti sono corretti ed appartenenti ad un utente esistente,
+    verremo reindirizzati alla homepage
+    altrimenti visualizzeremo un errore
+   */
 
   signUpUser() {
 

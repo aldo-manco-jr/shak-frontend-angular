@@ -2,8 +2,10 @@
   <div class="container bodyContainer">
     <div class="row">
       <div class="col s12">
-        <div class="card">
 
+        <!-- Creazione Card contenente i tabs -->
+
+        <div class="card">
           <div class="card-tabs">
             <ul class="tabs tabs-fixed-width">
               <li class="tab"><a class="active" href="#login">Login</a></li>
@@ -14,6 +16,12 @@
           <div class="card-content">
             <p style="text-align: center; font-size: 20px; color: #00796b">Welcome to SHAK!</p>
           </div>
+
+          <!-- Inizializzazione contenuto card
+               che dipende dal tab selezionato
+               se viene selezionato il tab (app-login) viene caricato il componente della login
+               se viene selezionato il tab (app-signup) viene caricato il componente della sign-up
+           -->
 
           <div class="card-content auth-content">
             <div id="login">
