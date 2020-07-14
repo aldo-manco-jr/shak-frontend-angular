@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import {TokenService} from "./../../services/token.service";
 
 @Component({
   selector: 'app-signup',
@@ -21,8 +22,10 @@ export class SignupComponent implements OnInit {
     - (router) -> istanza del routing necessaria a spostarsi nella homepage
    */
 
-  constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router) {
-  }
+  constructor(private authService: AuthService,
+              private formBuilder: FormBuilder,
+              private router: Router,
+              private tokenService: TokenService) { }
 
   /*
     Al caricamento del componente
@@ -57,17 +60,16 @@ export class SignupComponent implements OnInit {
   signUpUser() {
 
     this.showSpinner = true;
-
     console.log(this.signup_form.value);
-
     this.authService.registerUser(this.signup_form.value).subscribe((newUser) => {
 
-      console.log(newUser);
+      this.tokenService.setToken(newUser.token);
+      console.log(this.tokenService.getToken());
       this.signup_form.reset();
 
       setTimeout(() => {
         this.router.navigate(['streams']);
-      }, 1000);
+      }, 3000);
 
     }, (error) => {
 

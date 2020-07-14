@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import {TokenService} from "./../../services/token.service";
 
 /*
   Decoratore @Component:
@@ -28,7 +29,10 @@ export class LoginComponent implements OnInit {
     - (router) -> istanza del routing necessaria a spostarsi nella homepage
    */
 
-  constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router) {}
+  constructor(private authService: AuthService,
+              private formBuilder: FormBuilder,
+              private router: Router,
+              private tokenService: TokenService) {}
 
   /*
     Al caricamento del componente
@@ -65,13 +69,13 @@ export class LoginComponent implements OnInit {
 
     this.authService.loginUser(this.login_form.value).subscribe((loggingUser) => {
 
-      console.log(loggingUser);
+      this.tokenService.setToken(loggingUser.token);
 
       this.login_form.reset();
 
       setTimeout(() => {
         this.router.navigate(['streams']);
-      }, 1000);
+      }, 3000);
 
     }, (error) => {
 

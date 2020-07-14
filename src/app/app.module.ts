@@ -8,6 +8,8 @@ import { AuthRoutingModule } from './modules/auth-routing.module';
 import { StreamsComponent } from './components/streams/streams.component';
 import { StreamsModule } from './modules/streams.module';
 import { StreamsRoutingModule } from './modules/streams-routing.module';
+import { CookieService } from 'ngx-cookie-service';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 /*
   Decoratore @NgModule:
@@ -18,8 +20,8 @@ import { StreamsRoutingModule } from './modules/streams-routing.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, AuthModule, AuthRoutingModule, StreamsModule, StreamsRoutingModule],
-  providers: [],
+  imports: [BrowserModule, AuthModule, AuthRoutingModule, StreamsModule, StreamsRoutingModule],
+  providers: [CookieService],
   bootstrap: [AppComponent],
 })
 
