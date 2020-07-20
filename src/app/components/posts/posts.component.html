@@ -1,8 +1,8 @@
-<ul class="collection">
+<ul class="collection" *ngFor="let post of posts">
   <li class="collection-item avatar">
     <img src="http://placehold.it/50x50" alt="" class="circle">
-    <span class="title">Username</span>
-    <p class="time">Date
+    <span class="title">{{post.username}}</span>
+    <p class="time">{{timeFromNow(post.created_at)}}
       <br> Country
     </p>
   </li>
@@ -13,16 +13,16 @@
           <img class="postImage" src="https://hugelolcdn.com/i/644420.png">
         </div>
         <div class="card-content">
-          <p>this is my dracula</p>
+          <p>{{post.post}}</p>
         </div>
         <div class="card-action">
           <i class="material-icons">thumb_up</i>
           <span class="iconSpan">
-            10
+            {{post.total_likes}}
           </span>
           <i class="material-icons">chat</i>
           <span class="iconSpan">
-            10
+            {{post.comments.length}}
           </span>
         </div>
       </div>

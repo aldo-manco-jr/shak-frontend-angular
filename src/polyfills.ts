@@ -52,6 +52,9 @@
  *
  */
 
+// utile per rendere compatibile socket.io-client per versioni successive a ES5
+(window as any).global = window;
+
 /***************************************************************************************************
  * Zone JS is required by default for Angular itself.
  */
