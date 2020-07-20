@@ -7,6 +7,7 @@ import {PostService} from "../../services/post.service";
   templateUrl: './post-form.component.html',
   styleUrls: ['./post-form.component.css']
 })
+
 export class PostFormComponent implements OnInit {
 
   postForm: FormGroup;
@@ -26,6 +27,7 @@ export class PostFormComponent implements OnInit {
   submitPost(){
   this.postService.addPost(this.postForm.value).subscribe(data => {
     console.log(data);
+    this.postForm.reset();
   });
   }
 }
