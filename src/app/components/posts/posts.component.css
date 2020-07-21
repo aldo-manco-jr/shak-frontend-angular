@@ -5,17 +5,17 @@
 }
 
 .liked {
-  color: #64b5f6 !important;
+  color: #4db6ac !important;
 }
 
 .title {
   font-weight: bold;
-  color: #64b5f6;
+  color: #00796b;
 }
 
 .time {
   font-size: 14px;
-  color: #666565;
+  color: #004d40;
 }
 
 .iconSpan {

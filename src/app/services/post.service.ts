@@ -11,14 +11,16 @@ export class PostService {
 
   constructor(private http: HttpClient) { }
 
-
   addPost(body): Observable<any> {
     //interpolazione della stringa
     return this.http.post(BASE_URL + "/post/add-post", body);
   }
 
   getAllPosts(): Observable<any> {
-    //interpolazione della stringa
     return this.http.get(BASE_URL + "/posts");
+  }
+
+  addLike(body): Observable<any> {
+    return this.http.post(BASE_URL + "/post/add-like", body);
   }
 }

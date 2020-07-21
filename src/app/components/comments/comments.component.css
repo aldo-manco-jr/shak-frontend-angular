@@ -1,0 +1,34 @@
+.postDiv {
+  background-color: #00796b;
+}
+
+form {
+  background-color: #fff;
+}
+
+.formDiv {
+  margin: 0px 20px 0px 20px;
+}
+
+.addImageBtn {
+  margin-bottom: 5px;
+}
+
+.postBtn {
+  margin-bottom: 5px;
+  background-color: #00796b;
+}
+
+.title {
+  font-weight: bold;
+  color: #00796b;
+}
+
+.time {
+  font-size: 14px;
+  color: #00796b;
+}
+
+.postComment {
+  font-size: 15px;
+}

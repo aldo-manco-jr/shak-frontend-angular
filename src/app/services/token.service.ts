@@ -20,7 +20,7 @@ export class TokenService {
     this.cookieService.delete('chat_token');
   }
 
-  GetPayload(){
+  getPayload(){
     const token = this.getToken();
     let payload;
     if(token){

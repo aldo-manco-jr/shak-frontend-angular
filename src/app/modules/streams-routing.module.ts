@@ -3,10 +3,17 @@ import { CommonModule } from '@angular/common';
 import { StreamsComponent } from '../components/streams/streams.component';
 import { RouterModule, Routes } from '@angular/router';
 import {AuthGuard} from "../services/auth.guard";
+import { CommentsComponent } from '../components/comments/comments.component';
 
 const routes = [
-  {path: 'streams',
+  {
+    path: 'streams',
     component: StreamsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'post/:id',
+    component: CommentsComponent,
     canActivate: [AuthGuard]
   }
 ];
