@@ -40,7 +40,12 @@ export class PostsComponent implements OnInit {
 
     this.postServices.getAllPosts().subscribe((data) => {
       this.posts = data.allPosts;
-      console.log(data);
+      console.log(data);{}
+    }, err => {
+      if (err.error.token === null){
+        this.tokenService.deleteToken();
+        this.router.navigate(['']);
+      }
     });
   }
 
