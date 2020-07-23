@@ -28,7 +28,7 @@
             {{post.total_likes}}
           </span>
 
-          <i class="material-icons" (click)="openCommentsBox(post)">chat</i>
+          <i class="material-icons" [ngClass]="checkIfCurrentUserLikedPost(post.comments, currentUser.username) ? 'liked' : 'notLiked'" (click)="openCommentsBox(post)">chat</i>
           <span class="iconSpan">
             {{post.comments.length}}
           </span>
