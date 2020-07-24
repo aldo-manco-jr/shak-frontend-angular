@@ -4,6 +4,7 @@ import { StreamsComponent } from '../components/streams/streams.component';
 import { RouterModule, Routes } from '@angular/router';
 import {AuthGuard} from "../services/auth.guard";
 import { CommentsComponent } from '../components/comments/comments.component';
+import { PeopleComponent } from '../components/people/people.component';
 
 const routes = [
   {
@@ -14,6 +15,11 @@ const routes = [
   {
     path: 'post/:id',
     component: CommentsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'people',
+    component: PeopleComponent,
     canActivate: [AuthGuard]
   }
 ];
