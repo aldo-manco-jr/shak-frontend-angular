@@ -20,12 +20,31 @@ export class UserService {
   }
 
   GetUserByName(username): Observable<any>{
-    return this.http.get(`${BASE_URL}/user/${username}`);
+    return this.http.get(`${BASE_URL}/username/${username}`);
   }
 
   FollowUser(userFollowed): Observable<any>{
-    return this.http.post(BASE_URL + '/follow-user', {
+    return this.http.post(`${BASE_URL}/follow-user`, {
       userFollowed
+    });
+  }
+
+  UnFollowUser(userFollowed): Observable<any>{
+    return this.http.post(`${BASE_URL}/unfollow-user`, {
+      userFollowed
+    });
+  }
+
+  MarkNotification (id, deleteValue?): Observable<any> {
+    return this.http.post(`${BASE_URL}/mark/${id}`,{
+      id,
+      deleteValue
+    });
+  }
+
+  MarkAllAsRead(): Observable<any> {
+    return this.http.post(`${BASE_URL}/mark-all`,{
+      all:true
     });
   }
 

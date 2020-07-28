@@ -4,19 +4,19 @@ import {UserService} from "../../services/user.service";
 import * as io from 'socket.io-client'
 
 @Component({
-  selector: 'app-following',
-  templateUrl: './following.component.html',
-  styleUrls: ['./following.component.css']
+  selector: 'app-followers',
+  templateUrl: './followers.component.html',
+  styleUrls: ['./followers.component.css']
 })
-export class FollowingComponent implements OnInit {
+export class FollowersComponent implements OnInit {
 
-  following = [];
+  followers = [];
   user: any;
 
   socket: any;
   socketHost: string;
 
-  constructor(private tokenService: TokenService, private userService: UserService) {
+  constructor(private tokenService: TokenService,private userService: UserService) {
 
     this.socketHost ='http://localhost:3000';
     this.socket = io(this.socketHost);
@@ -24,10 +24,9 @@ export class FollowingComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.user = this.tokenService.getPayload();
     this.GetUser();
-
-    //automaticamente al nuovo following lo aggiunge in following facendo un refreshpage
     this.socket.on('refreshPage', (data) => {
       this.GetUser();
     });
@@ -35,14 +34,8 @@ export class FollowingComponent implements OnInit {
 
   GetUser(){
     this.userService.GetUserById(this.user._id).subscribe( (data) =>{
-      this.following = data.userFoundById.following;
+      this.followers = data.userFoundById.followers;
     }, err => console.log(err));
-  }
-
-  UnFollowUser(user){
-    this.userService.UnFollowUser(user._id).subscribe(data =>{
-      this.socket.emit('refresh',{});
-    })
   }
 
 }

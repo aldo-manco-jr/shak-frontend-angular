@@ -29,6 +29,7 @@ export class PeopleComponent implements OnInit {
     this.loggedUser = this.tokenService.getPayload();
     this.getAllUsers();
     this.getUserById();
+
     this.socket.on('refreshPage', (data) => {
       this.getAllUsers();
       this.getUserById();

@@ -1,0 +1,13 @@
+.tabs .tab  {
+  color: #004d40 !important;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.tabs .tab a {
+  color: #4db6ac !important;
+}
+
+.tabs .active {
+  background: inherit !important;
+}

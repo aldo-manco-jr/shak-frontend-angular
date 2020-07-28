@@ -12,6 +12,11 @@ div.bodyContainer{
   font-size: 18px;
 }
 
+.tabs .active{
+  background: inherit !important;
+}
+
 .auth-content{
   height: 523px !important;
 }
+
