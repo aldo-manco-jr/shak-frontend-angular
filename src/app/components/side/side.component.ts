@@ -73,7 +73,7 @@ export class SideComponent implements OnInit{
 
   GetUser(){
     this.userService.GetUserById(this.user._id).subscribe(data =>{
-  this.userData = data.userFoundById;
+    this.userData = data.userFoundById;
     })
   }
 }
