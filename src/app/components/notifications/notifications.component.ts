@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Token} from "@angular/compiler";
-import {TokenService} from "../../services/token.service";
-import {UserService} from "../../services/user.service";
+import { Token } from '@angular/compiler';
+import { TokenService } from '../../services/token.service';
+import { UserService } from '../../services/user.service';
 import io from 'socket.io-client';
 import * as moment from 'moment';
 
@@ -20,17 +20,19 @@ export class NotificationsComponent implements OnInit {
 
   constructor(private tokenService: TokenService, private userService: UserService) {
 
-    this.socketHost ='http://localhost:3000';
+    this.socketHost = 'http://localhost:3000';
     this.socket = io(this.socketHost);
 
   }
 
   ngOnInit(): void {
-    this.user  =this.tokenService.getPayload();
+
+    this.user = this.tokenService.getPayload();
     this.GetUser();
+
     this.socket.on('refreshPage', () => {
       this.GetUser();
-    })
+    });
   }
 
   GetUser() {
@@ -47,15 +49,17 @@ export class NotificationsComponent implements OnInit {
     return moment(time).fromNow();
   }
 
-  MarkNotification(data){
-    this.userService.MarkNotification(data._id).subscribe((value) =>{
-      this.socket.emit('refresh',{});
+  MarkNotification(data) {
+
+    this.userService.MarkNotification(data._id).subscribe((value) => {
+      this.socket.emit('refresh', {});
     });
   }
 
-  DeleteNotification(data){
-    this.userService.MarkNotification(data._id, true).subscribe((value) =>{
-      this.socket.emit('refresh',{});
+  DeleteNotification(data) {
+
+    this.userService.MarkNotification(data._id, true).subscribe((value) => {
+      this.socket.emit('refresh', {});
     });
   }
 }

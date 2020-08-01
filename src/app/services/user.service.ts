@@ -25,13 +25,13 @@ export class UserService {
 
   FollowUser(userFollowed): Observable<any>{
     return this.http.post(`${BASE_URL}/follow-user`, {
-      userFollowed
+      userFollowed: userFollowed
     });
   }
 
   UnFollowUser(userFollowed): Observable<any>{
     return this.http.post(`${BASE_URL}/unfollow-user`, {
-      userFollowed
+      userFollowed: userFollowed
     });
   }
 
