@@ -18,7 +18,10 @@ export class MessageComponent implements OnInit {
 
   message: string;
 
-  constructor(private tokenService: TokenService, private messageService: MessageService, private route: ActivatedRoute, private userService: UserService) { }
+  arrayMessages = [];
+
+  constructor(private tokenService: TokenService, private messageService: MessageService, private route: ActivatedRoute, private userService: UserService) {
+  }
 
   ngOnInit(): void {
 
@@ -27,22 +30,32 @@ export class MessageComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.receiverName = params.name;
       this.GetUserByUsername(this.receiverName);
-      console.log(this.receiverUser);
     });
   }
 
-  GetUserByUsername(name){
+  GetUserByUsername(name) {
 
     this.userService.GetUserByName(name).subscribe((data) => {
       this.receiverUser = data.userFoundByName;
+      console.log(this.senderUser._id, data.userFoundByName._id);
+      this.getAllMessages(this.senderUser._id, data.userFoundByName._id);
     });
   }
 
-  sendMessage(){
+  sendMessage() {
 
-    this.messageService.SendMessage(this.senderUser._id, this.receiverUser._id, this.receiverUser.username, this.message).subscribe((data) => {
-      console.log(data);
-    })
+    if (this.message) {
+      this.messageService.SendMessage(this.senderUser._id, this.receiverUser._id, this.receiverUser.username, this.message).subscribe((data) => {
+        console.log(data);
+        this.message = '';
+      });
+    }
+  }
+
+  getAllMessages(senderId, receiverId) {
+    this.messageService.GetAllMessages(senderId, receiverId).subscribe((data) => {
+      this.arrayMessages = data.messages.message;
+    });
   }
 
 }
