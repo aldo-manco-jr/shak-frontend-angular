@@ -215,3 +215,8 @@ emoji-content {
   padding: 0px !important;
   font-size: 15px;
 }
+
+.headerChat{
+  margin-top: 0px;
+  margin-bottom: 0px;
+}

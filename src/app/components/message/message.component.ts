@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { TokenService } from '../../services/token.service';
 import { MessageService } from '../../services/message.service';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../services/user.service';
+import io from 'socket.io-client';
 
 @Component({
   selector: 'app-message',
   templateUrl: './message.component.html',
   styleUrls: ['./message.component.css']
 })
-export class MessageComponent implements OnInit {
+export class MessageComponent implements OnInit, AfterViewInit {
 
   receiverName: string;
 
@@ -18,9 +19,17 @@ export class MessageComponent implements OnInit {
 
   message: string;
 
-  arrayMessages = [];
+  messagesArray = [];
+
+  socketHost: string;
+  socket: any;
+
+  typingMessage;
+  typing = false;
 
   constructor(private tokenService: TokenService, private messageService: MessageService, private route: ActivatedRoute, private userService: UserService) {
+    this.socketHost = 'http://localhost:3000/';
+    this.socket = io(this.socketHost);
   }
 
   ngOnInit(): void {
@@ -31,13 +40,38 @@ export class MessageComponent implements OnInit {
       this.receiverName = params.name;
       this.GetUserByUsername(this.receiverName);
     });
+
+    this.socket.on('refreshPage', (data) => {
+      this.GetUserByUsername(this.receiverName);
+    });
+
+    this.socket.on('is_typing', (data) => {
+      if (data.sender == this.receiverName) {
+        this.typing = true;
+      }
+    });
+
+    this.socket.on('has_stopped_typing', (data) => {
+      if (data.sender == this.receiverName) {
+        this.typing = false;
+      }
+    });
+  }
+
+  ngAfterViewInit(): void {
+
+    const params = {
+      room1: this.senderUser.username,
+      room2: this.receiverName
+    }
+
+    this.socket.emit('join chat', params);
   }
 
   GetUserByUsername(name) {
 
     this.userService.GetUserByName(name).subscribe((data) => {
       this.receiverUser = data.userFoundByName;
-      console.log(this.senderUser._id, data.userFoundByName._id);
       this.getAllMessages(this.senderUser._id, data.userFoundByName._id);
     });
   }
@@ -45,17 +79,42 @@ export class MessageComponent implements OnInit {
   sendMessage() {
 
     if (this.message) {
+
       this.messageService.SendMessage(this.senderUser._id, this.receiverUser._id, this.receiverUser.username, this.message).subscribe((data) => {
-        console.log(data);
         this.message = '';
+        this.socket.emit('refresh', {});
       });
     }
   }
 
   getAllMessages(senderId, receiverId) {
     this.messageService.GetAllMessages(senderId, receiverId).subscribe((data) => {
-      this.arrayMessages = data.messages.message;
+      this.messagesArray = data.messages.message;
     });
+  }
+
+  isSentByLoggedUser(message){
+    return (this.senderUser._id === message.senderId);
+  }
+
+  isTyping(){
+
+    this.socket.emit('start_typing', {
+      sender: this.senderUser.username,
+      receiver: this.receiverName
+    });
+
+    if (this.typingMessage){
+      clearTimeout(this.typingMessage);
+    }
+
+    this.typingMessage = setTimeout(() => {
+
+      this.socket.emit('stop_typing', {
+        sender: this.senderUser.username,
+        receiver: this.receiverName
+      });
+    }, 5000);
   }
 
 }
