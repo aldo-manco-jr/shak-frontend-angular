@@ -40,7 +40,7 @@ export class PostsComponent implements OnInit {
 
     this.postServices.getAllPosts().subscribe((data) => {
       this.posts = data.allPosts;
-      console.log(data);{}
+      {}
     }, err => {
       if (err.error.token === null){
         this.tokenService.deleteToken();
@@ -57,7 +57,6 @@ export class PostsComponent implements OnInit {
 
     this.postServices.addLike(post).subscribe(
       (data) => {
-        console.log(data);
         this.socket.emit('refresh', {});
       },
       (error) => {

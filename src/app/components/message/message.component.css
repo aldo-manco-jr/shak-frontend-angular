@@ -143,27 +143,6 @@ a.autolinker {
   height: 38px;
 }
 
-emoji-picker {
-  width: 100% !important;
-  right: 6px;
-}
-emoji-content {
-  width: 100% !important;
-}
-
-.emojiBtn {
-  font-size: 20px !important;
-  background: inherit !important;
-  border: none !important;
-  text-align: center !important;
-  margin-left: -10px !important;
-}
-
-.emojiDiv {
-  width: 40px !important;
-  margin-bottom: 0px !important;
-}
-
 .imgCircle {
   width: 50px !important;
   height: 50px !important;
@@ -199,6 +178,7 @@ emoji-content {
 .inputBox {
   color: white;
   padding: 10px;
+  max-height:20px;
 }
 
 .input-field {
@@ -219,4 +199,9 @@ emoji-content {
 .headerChat{
   margin-top: 0px;
   margin-bottom: 0px;
+}
+
+.mbtn{
+  margin-left: -12px;
+  height:42px;
 }

@@ -57,16 +57,18 @@
         <div class="inputRow">
           <form (ngSubmit)="sendMessage()">
 
-            <div class="input-field inputField col s10">
+            <div class="input-field inputField col s11">
               <textarea name="message" class="materialize-textarea inputBox" [(ngModel)]="message" (keypress)="isTyping()"></textarea>
             </div>
 
+            <!--
             <div class="input-field col s1 emojiDiv">
               <button class="emojiBtn">Emoji</button>
             </div>
+             -->
 
             <div class="input-field col s1">
-              <button class="suffix btn">Send</button>
+              <button class="suffix btn mbtn">Send</button>
             </div>
 
           </form>
