@@ -1,16 +1,19 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { TokenService } from '../../services/token.service';
 import { MessageService } from '../../services/message.service';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import io from 'socket.io-client';
+import _ from 'lodash';
 
 @Component({
   selector: 'app-message',
   templateUrl: './message.component.html',
   styleUrls: ['./message.component.css']
 })
-export class MessageComponent implements OnInit, AfterViewInit {
+export class MessageComponent implements OnInit, AfterViewInit, OnChanges {
+
+  @Input() onlineUsers;
 
   receiverName: string;
 
@@ -26,6 +29,8 @@ export class MessageComponent implements OnInit, AfterViewInit {
 
   typingMessage;
   typing = false;
+
+  isReceiverOnline = false;
 
   constructor(private tokenService: TokenService, private messageService: MessageService, private route: ActivatedRoute, private userService: UserService) {
     this.socketHost = 'http://localhost:3000/';
@@ -66,6 +71,22 @@ export class MessageComponent implements OnInit, AfterViewInit {
     }
 
     this.socket.emit('join chat', params);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+
+    if (changes.onlineUsers.currentValue.length > 0){
+
+      console.log(changes.onlineUsers.currentValue);
+
+      const indexReceiverOfOnlineUsers = _.indexOf(changes.onlineUsers.currentValue, this.receiverName);
+
+      if (indexReceiverOfOnlineUsers > -1){
+        this.isReceiverOnline = true;
+      } else{
+        this.isReceiverOnline = false;
+      }
+    }
   }
 
   GetUserByUsername(name) {

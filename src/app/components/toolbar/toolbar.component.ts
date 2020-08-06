@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {TokenService} from "../../services/token.service";
 import {Router} from "@angular/router";
 import * as M from 'materialize-css';
@@ -13,7 +13,10 @@ import {MessageService} from "../../services/message.service";
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.css']
 })
-export class ToolbarComponent implements OnInit {
+export class ToolbarComponent implements OnInit, AfterViewInit {
+
+  @Output() onlineUsers = new EventEmitter();
+
   socketHost: any;
   socket: any;
 
@@ -48,10 +51,19 @@ export class ToolbarComponent implements OnInit {
       coverTrigger: false
     });
 
+    this.socket.emit('online', {room: 'global', userUsername: this.user.username});
+
     this.GetUser();
     this.socket.on('refreshPage', () => {
       this.GetUser();
     })
+  }
+
+  ngAfterViewInit(): void {
+
+    this.socket.on('listOnlineUsers', (data) => {
+      this.onlineUsers.emit(data);
+    });
   }
 
   GetUser() {
@@ -61,7 +73,6 @@ export class ToolbarComponent implements OnInit {
       this.count = value;
       this.chatList = data.userFoundById.chatList;
       this.checkIfRead(this.chatList);
-      console.log(this.msgNumber);
     }, err => {
       //se il token scade ci riporta alla login
       if (err.error.token === null) {
@@ -72,9 +83,13 @@ export class ToolbarComponent implements OnInit {
   }
 
   checkIfRead(arr) {
+
     const checkArr = [];
+
     for (let i = 0; i < arr.length; i++) {
+
       const receiver = arr[i].msgId.message[arr[i].msgId.message.length - 1];
+
      if(this.router.url !==`/chat/${receiver.sendername}`){
        if(receiver.isRead === false && receiver.receiverName === this.user.username){
          checkArr.push(1);
@@ -90,7 +105,16 @@ export class ToolbarComponent implements OnInit {
     })
   }
 
+  MarkAllMessages() {
+
+    this.messageService.MarkAllMessages().subscribe((data) => {
+      this.msgNumber = 0;
+      this.socket.emit('refresh', {});
+    });
+  }
+
   logout() {
+
     this.tokenService.deleteToken();
     this.router.navigate(['/']);
   }

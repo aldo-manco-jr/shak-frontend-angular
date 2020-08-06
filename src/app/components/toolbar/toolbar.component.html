@@ -1,11 +1,15 @@
 <nav class="nav-extended">
   <div class="container">
     <div class="nav-wrapper">
+
       <a (click)="GoToHome()" class="brand-logo" style="cursor: pointer;">SHAK</a>
+
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li class="dropdown-button dropdown-trigger" data-target="dropdown">
           <i class="fa fa-globe fa-1x badge"></i>
+
           <span class="nav-label-icon" *ngIf="count.length > 0">{{count.length}}</span>
+
           <ul id="dropdown" class="dropdown-content col s12 collection">
             <li class="collection-item avatar" *ngFor="let data of notifications">
               <img src="http://placehold.it/50x50" class="circle">
@@ -22,16 +26,20 @@
 
         <li class="dropdown-button dropdown-trigger1" data-target="dropdown1">
           <i class="fa fa-bell fa-1x badge"></i>
+
           <span class="nav-label-icon" *ngIf="msgNumber > 0">{{msgNumber}}</span>
+
           <ul id="dropdown1" class="dropdown-content col s12 collection">
             <li class="collection-item avatar" *ngFor="let chat of chatList" (click)="GoToChatPage(chat.receiverId.username)">
               <img src="http://placehold.it/50x50" class="circle">
+
               <span class="title">
                 {{chat.receiverId.username}}
                 <a class="secondary-content">
                   {{MessageDate(chat.msgId.message[chat.msgId.message.length-1].createdAt)}}
                 </a>
               </span>
+
             <p>
               {{chat.msgId.message[chat.msgId.message.length-1].body}}
               <a class="secondary-content" *ngIf="!chat.msgId.message[chat.msgId.message.length -1].isRead && chat.receiverId.username === chat.msgId.message[chat.msgId.message.length-1].senderName" >
@@ -41,12 +49,15 @@
                 <i class="material-icons">panorama_fish_eye</i>
               </a>
             </p>
+
             <li *ngIf="notifications.length <= 0">
               <p class="text">No notifications</p>
             </li>
+
             <p class="secondary-content">
-              <a class="markAll btn" (click)="MarkAll()">Mark all as read</a>
+              <a class="markAll btn" (click)="MarkAllMessages()">Mark all as read</a>
             </p>
+
           </ul>
         </li>
         <li>

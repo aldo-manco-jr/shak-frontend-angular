@@ -11,7 +11,7 @@
           <div class="row headerChat">
             <div class="col s10 nameCol">
               <span>{{receiverName}}</span>
-              <p class="isOnline">Online</p>
+              <p class="isOnline" *ngIf="isReceiverOnline">Online</p>
             </div>
           </div>
 
