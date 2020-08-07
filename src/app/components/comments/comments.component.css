@@ -32,3 +32,7 @@ form {
 .postComment {
   font-size: 15px;
 }
+
+.clickable{
+  cursor: pointer;
+}

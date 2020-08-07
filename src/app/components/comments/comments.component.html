@@ -45,6 +45,9 @@
           <span class="title">{{comment.username}}</span>
           <p class="time">{{timeFromNow(comment.created_at)}}</p>
           <p class="postComment">{{comment.comment_text}}</p>
+          <span *ngIf="isCommentMine(comment)" class="secondary-content clickable">
+            <i (click)="removeComment(comment)" class="material-icons">delete</i>
+          </span>
         </li>
       </ul>
     </div>

@@ -39,6 +39,13 @@ export class PostService {
     });
   }
 
+  removeComment(postId, comment): Observable<any> {
+    return this.http.post(BASE_URL + "/post/remove-comment", {
+      postId,
+      comment
+    });
+  }
+
   getPost(id): Observable<any>{
     return this.http.get( `${BASE_URL}/post/${id}`);
   }

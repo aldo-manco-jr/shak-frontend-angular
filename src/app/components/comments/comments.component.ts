@@ -4,6 +4,7 @@ import {PostService} from "../../services/post.service";
 import {ActivatedRoute} from "@angular/router";
 import * as moment from 'moment';
 import io from "socket.io-client";
+import { TokenService } from '../../services/token.service';
 
 @Component({
   selector: 'app-comments',
@@ -23,12 +24,17 @@ export class CommentsComponent implements OnInit, AfterViewInit {
   commentsArray = [];
   post: string;
 
-  constructor(private fb: FormBuilder, private postService: PostService, private  route: ActivatedRoute) {
+  loggedUser: any;
+
+  constructor(private fb: FormBuilder, private postService: PostService, private  route: ActivatedRoute, private tokenService: TokenService) {
     this.socketHost = 'http://localhost:3000';
     this.socket = io(this.socketHost);
   }
 
   ngOnInit(): void {
+
+    this.loggedUser = this.tokenService.getPayload();
+
     this.toolbarUserData = document.querySelector('.nav-content');
     this.postId = this.route.snapshot.paramMap.get('id');
 
@@ -58,6 +64,21 @@ export class CommentsComponent implements OnInit, AfterViewInit {
     this.postService.addComment(this.postId, this.commentForm.value.comment).subscribe(data => {
       this.socket.emit('refresh', {});
       this.commentForm.reset();
+    });
+  }
+
+  isCommentMine(comment){
+    if (this.loggedUser.username === comment.username) {
+      return true;
+    }else {
+      return false;
+    }
+  }
+
+  removeComment(comment){
+
+    this.postService.removeComment(this.postId, comment).subscribe(data => {
+      this.socket.emit('refresh', {});
     });
   }
 

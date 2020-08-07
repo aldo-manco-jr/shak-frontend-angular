@@ -20,6 +20,7 @@ export class PostsComponent implements OnInit {
 
   posts = [];
   following = [];
+  followersPosts = [];
 
   constructor(private postServices: PostService, private tokenService: TokenService, private router: Router, private userService: UserService) {
 
@@ -38,22 +39,24 @@ export class PostsComponent implements OnInit {
     });
   }
 
-  GetUser() {
-    this.userService.GetUserById(this.currentUser._id).subscribe((data) => {
-      this.following = data.userFoundById.following;
-    }, err => console.log(err));
-  }
-
   allPosts() {
 
-    this.postServices.getAllPosts().subscribe((data) => {
+    this.userService.GetUserById(this.currentUser._id).subscribe((data) => {
 
-      this.posts = data.allPosts;
-      this.GetUser();
+      this.following = data.userFoundById.following;
 
-      this.following.forEach((f) => {
-        this.posts = this.posts.filter((tmp) => f.userFollowed === tmp.user_id);
-      });
+      this.postServices.getAllPosts().subscribe((data) => {
+
+        this.posts = data.allPosts;
+
+        for (let i = 0; i < this.posts.length; i++) {
+          for (let j = 0; j < this.following.length; j++) {
+            if (this.posts[i].user_id._id === this.following[j].userFollowed._id) {
+              this.followersPosts.push(this.posts[i]);
+            }
+          }
+        }
+      }, err => console.log(err));
 
     }, err => {
       if (err.error.token === null) {
