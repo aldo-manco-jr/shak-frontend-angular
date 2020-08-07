@@ -75,16 +75,18 @@ export class MessageComponent implements OnInit, AfterViewInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
 
-    if (changes.onlineUsers.currentValue.length > 0){
+    const headerChat = document.querySelector('.nameCol');
 
-      console.log(changes.onlineUsers.currentValue);
+    if (changes.onlineUsers.currentValue.length > 0){
 
       const indexReceiverOfOnlineUsers = _.indexOf(changes.onlineUsers.currentValue, this.receiverName);
 
       if (indexReceiverOfOnlineUsers > -1){
         this.isReceiverOnline = true;
+        (headerChat as HTMLElement).style.marginTop='10px';
       } else{
         this.isReceiverOnline = false;
+        (headerChat as HTMLElement).style.marginTop='20px';
       }
     }
   }

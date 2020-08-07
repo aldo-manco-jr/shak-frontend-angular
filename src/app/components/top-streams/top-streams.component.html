@@ -4,7 +4,7 @@
     <img src="http://placehold.it/50x50" alt="" class="circle">
     <span class="title">{{post.username}}</span>
     <p class="time">{{timeFromNow(post.created_at)}}
-      <!--      <br> Country-->
+      <!--      <br> Country -->
     </p>
   </li>
 
@@ -23,7 +23,7 @@
 
         <div class="card-action">
 
-          <i (click)="likePost(post)"
+          <i (click)="likeOrUnlike(post, currentUser)"
              [ngClass]="checkIfCurrentUserLikedPost(post.likes, currentUser.username) ? 'liked' : 'notLiked'"
              class="material-icons">thumb_up</i>
           <span class="iconSpan">
@@ -35,6 +35,10 @@
              (click)="openCommentsBox(post)">chat</i>
           <span class="iconSpan">
             {{post.comments.length}}
+          </span>
+
+          <span class="secondary-content">
+            <i (click)="removePost(post)" class="material-icons">delete</i>
           </span>
 
         </div>

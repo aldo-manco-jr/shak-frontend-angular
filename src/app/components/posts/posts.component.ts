@@ -5,6 +5,7 @@ import io from 'socket.io-client';
 import _ from 'lodash';
 import { TokenService } from '../../services/token.service';
 import { Router } from '@angular/router';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-posts',
@@ -18,8 +19,9 @@ export class PostsComponent implements OnInit {
   currentUser: any;
 
   posts = [];
+  following = [];
 
-  constructor(private postServices: PostService, private tokenService: TokenService, private router: Router) {
+  constructor(private postServices: PostService, private tokenService: TokenService, private router: Router, private userService: UserService) {
 
     this.currentUser = this.tokenService.getPayload();
 
@@ -36,13 +38,26 @@ export class PostsComponent implements OnInit {
     });
   }
 
+  GetUser() {
+    this.userService.GetUserById(this.currentUser._id).subscribe((data) => {
+      this.following = data.userFoundById.following;
+    }, err => console.log(err));
+  }
+
   allPosts() {
 
     this.postServices.getAllPosts().subscribe((data) => {
+
       this.posts = data.allPosts;
-      {}
+      this.GetUser();
+
+      this.following.forEach((f) => {
+        this.posts = this.posts.filter((tmp) => f.userFollowed === tmp.user_id);
+      });
+
     }, err => {
-      if (err.error.token === null){
+      if (err.error.token === null) {
+        this.socket.disconnect();
         this.tokenService.deleteToken();
         this.router.navigate(['']);
       }
@@ -53,9 +68,29 @@ export class PostsComponent implements OnInit {
     return moment(time).fromNow();
   }
 
+  likeOrUnlike(post, currentUser) {
+
+    if (!this.checkIfCurrentUserLikedPost(post.likes, currentUser.username)) {
+      this.likePost(post);
+    } else {
+      this.unlikePost(post);
+    }
+  }
+
   likePost(post) {
 
     this.postServices.addLike(post).subscribe(
+      (data) => {
+        this.socket.emit('refresh', {});
+      },
+      (error) => {
+        console.log(error);
+      });
+  }
+
+  unlikePost(post) {
+
+    this.postServices.removeLike(post).subscribe(
       (data) => {
         this.socket.emit('refresh', {});
       },

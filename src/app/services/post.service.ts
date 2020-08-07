@@ -16,12 +16,20 @@ export class PostService {
     return this.http.post(BASE_URL + "/post/add-post", body);
   }
 
+  removePost(body): Observable<any> {
+    return this.http.post(BASE_URL + "/post/remove-post", body);
+  }
+
   getAllPosts(): Observable<any> {
     return this.http.get(BASE_URL + "/posts");
   }
 
   addLike(body): Observable<any> {
     return this.http.post(BASE_URL + "/post/add-like", body);
+  }
+
+  removeLike(body): Observable<any> {
+    return this.http.post(BASE_URL + "/post/remove-like", body);
   }
 
   addComment(postId, comment): Observable<any> {

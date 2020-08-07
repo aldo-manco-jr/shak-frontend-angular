@@ -201,6 +201,11 @@ a.autolinker {
   margin-bottom: 0px;
 }
 
+.headerChatOff{
+  margin-top: -8px;
+  margin-bottom: -8px;
+}
+
 .mbtn{
   margin-left: -12px;
   height:42px;

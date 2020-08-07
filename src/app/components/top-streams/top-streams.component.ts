@@ -40,18 +40,38 @@ export class TopStreamsComponent implements OnInit {
 
     this.postServices.getAllPosts().subscribe((data) => {
       this.topPosts = data.top;
-      {
-      }
     }, err => {
       if (err.error.token === null) {
+        this.socket.disconnect();
         this.tokenService.deleteToken();
         this.router.navigate(['']);
       }
     });
   }
 
+  removePost(post){
+
+    this.postServices.removePost(post).subscribe(() => {
+      this.socket.emit('refresh', {});
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
+
   timeFromNow(time) {
     return moment(time).fromNow();
+  }
+
+  likeOrUnlike(post, currentUser){
+
+    if (!this.checkIfCurrentUserLikedPost(post.likes, currentUser.username)){
+      console.log(1);
+      this.likePost(post);
+    }else{
+      console.log(-1);
+      this.unlikePost(post);
+    }
   }
 
   likePost(post) {
@@ -59,6 +79,17 @@ export class TopStreamsComponent implements OnInit {
     this.postServices.addLike(post).subscribe(
       (data) => {
         console.log(data);
+        this.socket.emit('refresh', {});
+      },
+      (error) => {
+        console.log(error);
+      });
+  }
+
+  unlikePost(post) {
+
+    this.postServices.removeLike(post).subscribe(
+      (data) => {
         this.socket.emit('refresh', {});
       },
       (error) => {

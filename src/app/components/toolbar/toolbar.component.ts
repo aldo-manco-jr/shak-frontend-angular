@@ -76,6 +76,7 @@ export class ToolbarComponent implements OnInit, AfterViewInit {
     }, err => {
       //se il token scade ci riporta alla login
       if (err.error.token === null) {
+        this.socket.disconnect();
         this.tokenService.deleteToken();
         this.router.navigate(['']);
       }
@@ -115,6 +116,7 @@ export class ToolbarComponent implements OnInit, AfterViewInit {
 
   logout() {
 
+    this.socket.disconnect();
     this.tokenService.deleteToken();
     this.router.navigate(['/']);
   }

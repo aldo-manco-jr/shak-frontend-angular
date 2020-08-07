@@ -23,7 +23,7 @@
 
         <div class="card-action">
 
-          <i (click)="likePost(post)" [ngClass]="checkIfCurrentUserLikedPost(post.likes, currentUser.username) ? 'liked' : 'notLiked'" class="material-icons">thumb_up</i>
+          <i (click)="likeOrUnlike(post, currentUser)" [ngClass]="checkIfCurrentUserLikedPost(post.likes, currentUser.username) ? 'liked' : 'notLiked'" class="material-icons">thumb_up</i>
           <span class="iconSpan">
             {{post.total_likes}}
           </span>

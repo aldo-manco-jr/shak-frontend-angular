@@ -18,6 +18,8 @@ export class PeopleComponent implements OnInit {
   socketHost: string;
   socket: any;
 
+  listOnlineUsers = [];
+
   constructor(private userService: UserService, private tokenService: TokenService) {
 
     this.socketHost ='http://localhost:3000';
@@ -64,6 +66,20 @@ export class PeopleComponent implements OnInit {
     this.userService.FollowUser(user._id).subscribe((data) => {
       this.socket.emit('refresh', {});
     })
+  }
 
+  online(event){
+    this.listOnlineUsers = event;
+  }
+
+  checkIfOnline(username){
+
+    const result = _.indexOf(this.listOnlineUsers, username);
+
+    if (result>-1){
+      return true;
+    }else {
+      return false;
+    }
   }
 }
