@@ -21,6 +21,7 @@ export class PostsComponent implements OnInit {
   posts = [];
   following = [];
   followersPosts = [];
+  emptyArray = [];
 
   constructor(private postServices: PostService, private tokenService: TokenService, private router: Router, private userService: UserService) {
 
@@ -47,6 +48,7 @@ export class PostsComponent implements OnInit {
 
       this.postServices.getAllPosts().subscribe((data) => {
 
+        this.followersPosts.length = 0;
         this.posts = data.allPosts;
 
         for (let i = 0; i < this.posts.length; i++) {
