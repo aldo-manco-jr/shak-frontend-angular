@@ -47,8 +47,10 @@ export class UserService {
       all:true
     });
   }
+  AddImage(image): Observable<any> {
+    return this.http.post(`${BASE_URL}/upload-image`, {
+      image: image
+    });
+  }
 
-  // async GetAllUsers(){
-  //   return await this.http.get(BASE_URL + '/users');
-  // }
 }

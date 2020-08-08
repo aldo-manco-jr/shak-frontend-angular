@@ -31,7 +31,7 @@
 
           <ul id="dropdown1" class="dropdown-content col s12 collection">
             <li class="collection-item avatar" *ngFor="let chat of chatList" (click)="GoToChatPage(chat.receiverId.username)">
-              <img src="http://placehold.it/50x50" class="circle">
+              <img src="" class="circle">
 
               <span class="title">
                 {{chat.receiverId.username}}
@@ -66,7 +66,7 @@
     </div>
     <div class="nav-content">
       <div class="nav-div">
-        <img class="circle responsive-img" src="http://placehold.it/50x50">
+        <img class="circle responsive-img" src="https://res.cloudinary.com/dfn8llckr/image/upload/v{{imageVersion}}/{{imageId}}">
       </div>
       <h1 class="profile-name">{{user.username}}</h1>
       <p class="user-text">Abbiamo impiegato un'ora per capire che avevamo messo un underscore anzichè un trattino.</p>

@@ -26,6 +26,9 @@ export class ToolbarComponent implements OnInit, AfterViewInit {
   chatList = [];
   msgNumber = 0;
 
+  imageId: any;
+  imageVersion: any;
+
   constructor(private tokenService: TokenService, private router: Router, private userServices: UserService, private messageService: MessageService) {
     this.socketHost = 'http://localhost:3000';
     this.socket = io(this.socketHost);
@@ -68,6 +71,10 @@ export class ToolbarComponent implements OnInit, AfterViewInit {
 
   GetUser() {
     this.userServices.GetUserById(this.user._id).subscribe((data) => {
+
+      this.imageId = data.userFoundById.profileImageId;
+      this.imageVersion =  data.userFoundById.profileImageVersion;
+
       this.notifications = data.userFoundById.notifications.reverse();
       const value = _.filter(this.notifications, ['read', false]);
       this.count = value;
