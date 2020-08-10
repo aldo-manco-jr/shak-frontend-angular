@@ -69,12 +69,21 @@ export class ImagesComponent implements OnInit {
       this.userService.AddImage(this.selectedFile).subscribe((data) => {
          const filePath = <HTMLInputElement>document.getElementById('filePath');
           filePath.value = '';
+        this.socket.emit('refresh', {});
         },
         (err) => console.log(err)
       );
     }
   }
 
+SetProfileImage(image){
+    this.userService.SetDefaultImage(image.imageId, image.imageVersion).subscribe(data =>{
+      console.log(image);
+      this.socket.emit('refresh', {});
+    },
+      err => console.log(err)
+    );
+};
 
 // file reader API
   readAsBase64(file): Promise<any> {

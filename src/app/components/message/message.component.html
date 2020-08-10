@@ -5,7 +5,7 @@
         <div class="valign-wrapper" style="background: #00796b !important">
 
           <div class="col s12 imgCol">
-            <img src="http://placehold.it/50x50" class="circle">
+            <img *ngIf="receiverUser" src="http://res.cloudinary.com/dfn8llckr/image/upload/v{{receiverUser.profileImageVersion}}/{{receiverUser.profileImageId}}" class="imgCircle">
           </div>
 
           <div class="row">

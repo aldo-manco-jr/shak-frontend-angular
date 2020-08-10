@@ -1,0 +1,108 @@
+<app-toolbar></app-toolbar>
+
+<div class="container">
+  <div class="col s12 m12 l10">
+    <ul class="tabs" >
+
+      <li class="tab col s4"  (click)="ChangeTab('posts')">
+        <a href="#" class="active">
+          Posts
+        </a>
+      </li>
+
+      <li class="tab col s4"  (click)="ChangeTab('following')">
+        <a href="#">
+          Following
+        </a>
+      </li>
+
+      <li class="tab col s4"  (click)="ChangeTab('followers')">
+        <a href="#">
+          Followers
+        </a>
+      </li>
+
+    </ul>
+  </div>
+</div>
+
+
+<div class="container" style="margin-top: 30px;">
+    <div class="row">
+      <div class="col s12 m4 l3">
+        <div class="row">
+          <div class="col s12">
+            <span class="title">{{name}}</span>
+            <h2 class="cityName">country</h2>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 m8 l9" style="background: white;">
+        <div class="row">
+          <div class="col s12">
+            <div class="row" *ngIf="postsTab">
+              <ul class="collection col s12 m12 l10" *ngFor="let post of posts">
+                <li class="collection-item avatar">
+                  <img src="http://res.cloudinary.com/dfn8llckr/image/upload/v{{user.profileImageVersion}}/{{user.profileImageId}}" class="circle responsive-img">
+                  <span class="post">{{post.postId.username}}</span>
+                  <p class="time">{{TimeFromNow(post.created_at)}}
+
+                  </p>
+                </li>
+                <div class="row">
+                  <div class="col s12" >
+                    <div class="card">
+                      <div class="card-image card_image">
+                        <img class="postImage" src="http://placehold.it/100x100">
+                      </div>
+                      <div class="card-content">
+                        <p>{{post.postId.post}}</p>
+                      </div>
+                      <div class="card-action">
+                        <i class="material-icons">thumb_up</i>
+                        <span id="iconSpan">
+                        {{post.postId.total_likes}}
+                      </span>
+                        <i class="material-icons">chat</i>
+                        <span id="iconSpan">
+                        {{post.postId.comments.length}}
+                      </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ul>
+            </div>
+
+            <div class="row" *ngIf="followingTab">
+              <div class="col s12 m4 l4" *ngFor="let user of following">
+                <div class="card">
+                  <div class="card-image imgDiv">
+                    <img src="http://res.cloudinary.com/dfn8llckr/image/upload/v{{user.userFollowed.profileImageVersion}}/{{user.userFollowed.profileImageId}}" class="circle responsive-img">
+                  </div>
+                  <div class="card-action">
+                    <h3 class="card-title">{{user.userFollowed.username}}</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row" *ngIf="followersTabs">
+              <div class="col s12 m4 l4" *ngFor="let user of followers">
+                <div class="card">
+                  <div class="card-image imgDiv">
+                    <img src="http://res.cloudinary.com/dfn8llckr/image/upload/v{{user.follower.profileImageVersion}}/{{user.follower.profileImageId}}" class="circle responsive-img">
+                  </div>
+                  <div class="card-action">
+                    <h3 class="card-title">{{user.follower.username}}</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+</div>

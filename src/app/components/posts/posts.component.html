@@ -1,7 +1,7 @@
 <ul class="collection col s12 m12 l10" *ngFor="let post of followersPosts">
 
   <li class="collection-item avatar">
-    <img src="http://placehold.it/50x50" alt="" class="circle">
+    <img src="http://res.cloudinary.com/dfn8llckr/image/upload/v{{post.user_id.profileImageVersion}}/{{post.user_id.profileImageId}}" class="circle">
     <span class="title">{{post.username}}</span>
     <p class="time">{{timeFromNow(post.created_at)}}
 <!--      <br> Country-->

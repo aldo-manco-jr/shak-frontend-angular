@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {observableToBeFn} from "rxjs/internal/testing/TestScheduler";
 
 const BASE_URL = 'http://localhost:3000/api/shak';
 
@@ -52,5 +53,16 @@ export class UserService {
       image: image
     });
   }
+  SetDefaultImage(imageId,imageVersion): Observable<any>{
+    return this.http.get(`${BASE_URL}/set-default-image/${imageId}/${imageVersion}`);
+
+    //alternative
+    //return this.http.get(`${BASE_URL}/set-default-image?id=${imageId}?version${imageVersion}`);
+  }
+
+  ProfileNotifications(id): Observable<any> {
+    return this.http.post(`${BASE_URL}/user/view-profile`,{id});
+  }
+
 
 }

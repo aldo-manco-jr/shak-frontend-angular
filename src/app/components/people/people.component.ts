@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../services/user.service';
+import {Component, OnInit} from '@angular/core';
+import {UserService} from '../../services/user.service';
 import _ from 'lodash';
-import { TokenService } from '../../services/token.service';
+import {TokenService} from '../../services/token.service';
 import * as io from 'socket.io-client'
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-people',
@@ -20,9 +21,9 @@ export class PeopleComponent implements OnInit {
 
   listOnlineUsers = [];
 
-  constructor(private userService: UserService, private tokenService: TokenService) {
+  constructor(private userService: UserService, private tokenService: TokenService, private  router: Router) {
 
-    this.socketHost ='http://localhost:3000';
+    this.socketHost = 'http://localhost:3000';
     this.socket = io(this.socketHost);
 
   }
@@ -38,7 +39,7 @@ export class PeopleComponent implements OnInit {
     });
   }
 
-  getAllUsers(){
+  getAllUsers() {
 
     this.userService.GetAllUsers().subscribe((data) => {
       _.remove(data.allUsers, {username: this.loggedUser.username});
@@ -46,40 +47,52 @@ export class PeopleComponent implements OnInit {
     });
   }
 
-  getUserById(){
+  getUserById() {
     this.userService.GetUserById(this.loggedUser._id).subscribe((data) => {
       this.followedUsers = data.userFoundById.following;
     });
   }
 
-  getUserByUsername(){
+  getUserByUsername() {
     this.userService.GetUserByName(this.loggedUser.username).subscribe((data) => {
       this.followedUsers = data.userFoundByName.following;
     });
   }
 
-  checkIfUserIsFollowed(arr, id){
+  checkIfUserIsFollowed(arr, id) {
     return _.find(arr, ['userFollowed._id', id]);
   }
 
-  followUser(user){
+  followUser(user) {
     this.userService.FollowUser(user._id).subscribe((data) => {
       this.socket.emit('refresh', {});
     })
   }
 
-  online(event){
+  online(event) {
     this.listOnlineUsers = event;
   }
 
-  checkIfOnline(username){
+  checkIfOnline(username) {
 
     const result = _.indexOf(this.listOnlineUsers, username);
 
-    if (result>-1){
+    if (result > -1) {
       return true;
-    }else {
+    } else {
       return false;
     }
   }
+
+  viewUser(user) {
+    this.router.navigate([user.username]);
+    console.log(user.username);
+    if(this.loggedUser.username !== user.username){
+      this.userService.ProfileNotifications(user._id).subscribe(data =>{
+        this.socket.emit('refresh', {});
+      }, err => console.log(err)
+      );
+    }
+  }
+
 }

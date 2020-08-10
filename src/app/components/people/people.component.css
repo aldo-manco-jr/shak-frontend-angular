@@ -65,3 +65,7 @@
   color: #00796b !important;
   font-weight: bold;
 }
+
+.pointer{
+  cursor: pointer;
+}

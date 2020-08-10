@@ -11,9 +11,9 @@
       <div class="row">
         <div class="col s12 m6 l4 cardDiv" *ngFor="let user of users">
           <div class="card">
-            <a>
-              <div class="card-image imgDiv">
-                <img src="http://placehold.it/100x100" class="imgCircle responsive-img">
+            <a class="pointer" (click)="viewUser(user)">
+              <div class="card-image imgDiv" (click)="viewUser(user)">
+                <img src="http://res.cloudinary.com/dfn8llckr/image/upload/v{{user.profileImageVersion}}/{{user.profileImageId}}" class="imgCircle responsive-img">
               </div>
             </a>
             <div class="card-action">
