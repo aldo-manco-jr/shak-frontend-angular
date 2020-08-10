@@ -11,6 +11,7 @@ import {NotificationsComponent} from "../components/notifications/notifications.
 import { ChatComponent } from '../components/chat/chat.component';
 import { ImagesComponent } from '../components/images/images.component';
 import {ViewUserComponent} from "../components/view-user/view-user.component";
+import {ChangePasswordComponent} from "../components/change-password/change-password.component";
 
 const routes = [
   {
@@ -58,6 +59,12 @@ const routes = [
     component: ViewUserComponent,
     canActivate: [AuthGuard]
   },
+  {
+    path: 'account/password',
+    component: ChangePasswordComponent,
+    canActivate: [AuthGuard]
+  },
+
   {
     path: '**',
     redirectTo:'streams'

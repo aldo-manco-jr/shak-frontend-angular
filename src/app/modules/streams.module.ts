@@ -24,10 +24,11 @@ import {NgxAutoScrollModule} from 'ngx-auto-scroll';
 import {ImagesComponent} from '../components/images/images.component';
 import {FileUploadModule} from 'ng2-file-upload';
 import { ViewUserComponent } from '../components/view-user/view-user.component';
+import { ChangePasswordComponent } from '../components/change-password/change-password.component';
 
 
 @NgModule({
-  declarations: [StreamsComponent, ToolbarComponent, SideComponent, PostFormComponent, PostsComponent, CommentsComponent, PeopleComponent, FollowingComponent, FollowersComponent, NotificationsComponent, TopStreamsComponent, ChatComponent, MessageComponent, ImagesComponent, ViewUserComponent],
+  declarations: [StreamsComponent, ToolbarComponent, SideComponent, PostFormComponent, PostsComponent, CommentsComponent, PeopleComponent, FollowingComponent, FollowersComponent, NotificationsComponent, TopStreamsComponent, ChatComponent, MessageComponent, ImagesComponent, ViewUserComponent, ChangePasswordComponent],
   imports: [CommonModule, FormsModule, ReactiveFormsModule, HttpClientModule, RouterModule, NgxAutoScrollModule, FileUploadModule],
   exports: [StreamsComponent, ToolbarComponent],
   providers: [TokenService, PostService, UserService, MessageService]

@@ -64,5 +64,9 @@ export class UserService {
     return this.http.post(`${BASE_URL}/user/view-profile`,{id});
   }
 
+  ChangePassword(body): Observable<any> {
+    return this.http.post(`${BASE_URL}/change-password`,body);
+  }
+
 
 }
