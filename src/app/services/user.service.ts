@@ -65,7 +65,7 @@ export class UserService {
   }
 
   ChangePassword(body): Observable<any> {
-    return this.http.post(`${BASE_URL}/change-password`,body);
+    return this.http.post(`${BASE_URL}/change-password`, body);
   }
 
 

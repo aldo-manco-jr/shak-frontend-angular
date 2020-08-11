@@ -3,6 +3,7 @@ import {FileUploader} from 'ng2-file-upload';
 import {UserService} from "../../services/user.service";
 import {TokenService} from "../../services/token.service";
 import io from 'socket.io-client';
+
 const BASE_URL = 'http://localhost:3000/api/shak/upload-image';
 
 @Component({

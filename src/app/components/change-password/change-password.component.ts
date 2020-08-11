@@ -11,7 +11,7 @@ export class ChangePasswordComponent implements OnInit {
 
   passwordForm: FormGroup;
 
-  constructor( private fb:FormBuilder, private userService: UserService) { }
+  constructor( private fb: FormBuilder, private userService: UserService) { }
 
   ngOnInit(): void {
     this.Init();
@@ -28,8 +28,10 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   ChangePassword(){
-    this.userService.ChangePassword(this.passwordForm.value).subscribe(data =>{
-      this.passwordForm.reset();
+
+    this.userService.ChangePassword(this.passwordForm.value).subscribe(data => {
+      console.log('porca puttana');
+      //this.passwordForm.reset();
     },
       err=> console.log(err)
     );

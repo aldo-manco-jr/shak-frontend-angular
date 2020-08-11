@@ -4,7 +4,7 @@
     <img src="http://res.cloudinary.com/dfn8llckr/image/upload/v{{post.user_id.profileImageVersion}}/{{post.user_id.profileImageId}}" class="circle">
     <span class="title">{{post.username}}</span>
     <p class="time">{{timeFromNow(post.created_at)}}
-<!--      <br> Country-->
+      <br> @{{post.user_id.city}}, {{post.user_id.country}}
     </p>
   </li>
 
@@ -13,9 +13,9 @@
 
       <div class="card">
 
-        <!--<div class="card-image">
-          <img class="postImage" src="https://hugelolcdn.com/i/644420.png">
-        </div>-->
+        <div class="card-image" *ngIf="post.imageId">
+          <img class="postImage" src="http://res.cloudinary.com/dfn8llckr/image/upload/v{{post.imageVersion}}/{{post.imageId}}">
+        </div>
 
         <div class="card-content">
           <p>{{post.post}}</p>

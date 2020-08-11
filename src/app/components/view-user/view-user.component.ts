@@ -43,7 +43,7 @@ export class ViewUserComponent implements OnInit, AfterViewInit {
   GetUserData(name){
     this.userService.GetUserByName(name).subscribe(data =>{
       this.user = data.userFoundByName;
-      this.posts = data.userFoundByName.posts;
+      this.posts = data.userFoundByName.posts.reverse();
       this.followers = data.userFoundByName.followers;
       this.following = data.userFoundByName.following;
     },
