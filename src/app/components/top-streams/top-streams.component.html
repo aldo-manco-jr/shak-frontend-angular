@@ -1,7 +1,9 @@
 <ul class="collection col s12 m12 l10" *ngFor="let post of topPosts">
 
   <li class="collection-item avatar">
-    <img src="http://res.cloudinary.com/dfn8llckr/image/upload/v{{post.user_id.profileImageVersion}}/{{post.user_id.profileImageId}}" class="circle">
+    <img
+      src="http://res.cloudinary.com/dfn8llckr/image/upload/v{{post.user_id.profileImageVersion}}/{{post.user_id.profileImageId}}"
+      class="circle">
     <span class="title">{{post.username}}</span>
     <p class="time">{{timeFromNow(post.created_at)}}
       <!--      <br> Country -->
@@ -14,7 +16,10 @@
       <div class="card">
 
         <div class="card-image" *ngIf="post.imageId">
-          <img class="postImage" src="http://res.cloudinary.com/dfn8llckr/image/upload/v{{post.imageVersion}}/{{post.imageId}}">
+          <a href="http://res.cloudinary.com/dfn8llckr/image/upload/v{{post.imageVersion}}/{{post.imageId}}">
+            <img class="postImage"
+                 src="http://res.cloudinary.com/dfn8llckr/image/upload/v{{post.imageVersion}}/{{post.imageId}}">
+          </a>
         </div>
 
         <div class="card-content">
@@ -37,7 +42,7 @@
             {{post.comments.length}}
           </span>
 
-          <span class="secondary-content">
+          <span class="secondary-content" *ngIf="post.user_id._id === currentUser._id">
             <i (click)="removePost(post)" class="material-icons">delete</i>
           </span>
 

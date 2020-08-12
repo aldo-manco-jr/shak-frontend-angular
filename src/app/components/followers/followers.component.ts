@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {TokenService} from "../../services/token.service";
 import {UserService} from "../../services/user.service";
 import * as io from 'socket.io-client'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-followers',
@@ -11,12 +12,12 @@ import * as io from 'socket.io-client'
 export class FollowersComponent implements OnInit {
 
   followers = [];
-  user: any;
+  loggedUser: any;
 
   socket: any;
   socketHost: string;
 
-  constructor(private tokenService: TokenService,private userService: UserService) {
+  constructor(private tokenService: TokenService,private userService: UserService, private router: Router) {
 
     this.socketHost ='http://localhost:3000';
     this.socket = io(this.socketHost);
@@ -25,7 +26,7 @@ export class FollowersComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.user = this.tokenService.getPayload();
+    this.loggedUser = this.tokenService.getPayload();
     this.GetUser();
     this.socket.on('refreshPage', (data) => {
       this.GetUser();
@@ -33,9 +34,21 @@ export class FollowersComponent implements OnInit {
   }
 
   GetUser(){
-    this.userService.GetUserById(this.user._id).subscribe( (data) =>{
+    this.userService.GetUserById(this.loggedUser._id).subscribe( (data) =>{
       this.followers = data.userFoundById.followers;
     }, err => console.log(err));
+  }
+
+  viewUser(user) {
+
+    this.router.navigate([user.follower.username]);
+
+    if(this.loggedUser.username !== user.username){
+      this.userService.ProfileNotifications(user._id).subscribe(data =>{
+          this.socket.emit('refresh', {});
+        }, err => console.log(err)
+      );
+    }
   }
 
 }

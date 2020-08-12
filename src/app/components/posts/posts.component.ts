@@ -45,6 +45,9 @@ export class PostsComponent implements OnInit {
     this.userService.GetUserById(this.currentUser._id).subscribe((data) => {
 
       this.following = data.userFoundById.following;
+      this.following.push({
+        userFollowed: this.currentUser
+      })
 
       this.postServices.getAllPosts().subscribe((data) => {
 
@@ -111,6 +114,15 @@ export class PostsComponent implements OnInit {
 
   openCommentsBox(post) {
     return this.router.navigate(['post', post._id]);
+  }
+
+  removePost(post){
+
+    this.postServices.removePost(post).subscribe(() => {
+      this.socket.emit('refresh', {});
+    }, (error) => {
+      console.log(error);
+    });
   }
 
 }

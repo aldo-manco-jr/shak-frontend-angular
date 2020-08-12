@@ -44,8 +44,8 @@ export class ToolbarComponent implements OnInit, AfterViewInit {
       alignment: 'right',
       hover: true,
       coverTrigger: false,
-
     });
+
     const dropDownElementTwo = document.querySelectorAll('.dropdown-trigger1');
 
     M.Dropdown.init(dropDownElementTwo, {

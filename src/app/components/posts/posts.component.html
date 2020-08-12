@@ -14,7 +14,9 @@
       <div class="card">
 
         <div class="card-image" *ngIf="post.imageId">
-          <img class="postImage" src="http://res.cloudinary.com/dfn8llckr/image/upload/v{{post.imageVersion}}/{{post.imageId}}">
+          <a href="http://res.cloudinary.com/dfn8llckr/image/upload/v{{post.imageVersion}}/{{post.imageId}}">
+            <img class="postImage" src="http://res.cloudinary.com/dfn8llckr/image/upload/v{{post.imageVersion}}/{{post.imageId}}">
+          </a>
         </div>
 
         <div class="card-content">
@@ -31,6 +33,10 @@
           <i class="material-icons" [ngClass]="checkIfCurrentUserLikedPost(post.comments, currentUser.username) ? 'liked' : 'notLiked'" (click)="openCommentsBox(post)">chat</i>
           <span class="iconSpan">
             {{post.comments.length}}
+          </span>
+
+          <span class="secondary-content" *ngIf="post.user_id._id === currentUser._id">
+            <i (click)="removePost(post)" class="material-icons">delete</i>
           </span>
 
         </div>

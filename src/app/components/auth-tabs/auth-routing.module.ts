@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { from } from 'rxjs';
-import { AuthTabsComponent } from '../components/auth-tabs/auth-tabs.component';
+import { AuthTabsComponent } from './auth-tabs.component';
 
 /*
   dichiarazione di un array che contiene dei JSON di tipo di Routes
@@ -11,18 +10,18 @@ import { AuthTabsComponent } from '../components/auth-tabs/auth-tabs.component';
 const routes: Routes = [
   {
     path: '',
-    component: AuthTabsComponent,
+    component: AuthTabsComponent
   }
 ];
 
 /*
   Decoratore @NgModule
   - importazione funzionalità necessarie al funzionamento del client-side routing
-  - esportazione modulo di routing con tutti i Routes
+  - esportazione modulo di routing con tutte le Routes
  */
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
-export class AuthRoutingModule {}
+export class AuthRoutingModule { }

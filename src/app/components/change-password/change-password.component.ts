@@ -30,7 +30,7 @@ export class ChangePasswordComponent implements OnInit {
   ChangePassword(){
 
     this.userService.ChangePassword(this.passwordForm.value).subscribe(data => {
-      console.log('porca puttana');
+      console.log('reset form password');
       //this.passwordForm.reset();
     },
       err=> console.log(err)

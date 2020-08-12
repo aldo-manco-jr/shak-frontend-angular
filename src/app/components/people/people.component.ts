@@ -21,7 +21,7 @@ export class PeopleComponent implements OnInit {
 
   listOnlineUsers = [];
 
-  constructor(private userService: UserService, private tokenService: TokenService, private  router: Router) {
+  constructor(private userService: UserService, private tokenService: TokenService, private router: Router) {
 
     this.socketHost = 'http://localhost:3000';
     this.socket = io(this.socketHost);

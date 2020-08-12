@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {TokenService} from "../../services/token.service";
 import {UserService} from "../../services/user.service";
 import * as io from 'socket.io-client'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-following',
@@ -16,7 +17,7 @@ export class FollowingComponent implements OnInit {
   socket: any;
   socketHost: string;
 
-  constructor(private tokenService: TokenService, private userService: UserService) {
+  constructor(private tokenService: TokenService, private userService: UserService, private router: Router) {
 
     this.socketHost ='http://localhost:3000';
     this.socket = io(this.socketHost);
@@ -43,6 +44,17 @@ export class FollowingComponent implements OnInit {
     this.userService.UnFollowUser(user._id).subscribe(data =>{
       this.socket.emit('refresh',{});
     })
+  }
+
+  viewUser(user) {
+    console.log(9);
+    this.router.navigate([user.userFollowed.username]);
+    if(this.user.username !== user.username){
+      this.userService.ProfileNotifications(user._id).subscribe(data =>{
+          this.socket.emit('refresh', {});
+        }, err => console.log(err)
+      );
+    }
   }
 
 }

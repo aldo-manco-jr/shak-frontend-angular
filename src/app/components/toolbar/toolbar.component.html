@@ -11,11 +11,15 @@
           <span class="nav-label-icon" *ngIf="count.length > 0">{{count.length}}</span>
 
           <ul id="dropdown" class="dropdown-content col s12 collection">
-            <li class="collection-item avatar" *ngFor="let data of notifications">
-              <img src="http://res.cloudinary.com/dfn8llckr/image/upload/v{{data.senderId.profileImageVersion}}/{{data.senderId.profileImageId}}" class="circle responsive-img">
 
-              <span [ngClass]="data.read ?'isRead' : 'unread' ">{{data.message}}</span>
-              <p class="time">{{timeFromNow(data.created)}}</p>
+            <li class="collection-item avatar" *ngFor="let data of notifications">
+              <a [routerLink]="['/notifications']">
+                <img
+                  src="http://res.cloudinary.com/dfn8llckr/image/upload/v{{data.senderId.profileImageVersion}}/{{data.senderId.profileImageId}}"
+                  class="circle responsive-img">
+                <span [ngClass]="data.read ?'isRead' : 'unread' ">{{data.message}}</span>
+                <p class="time">{{timeFromNow(data.created)}}</p>
+              </a>
             <li *ngIf="notifications.length <= 0">
               <p class="text">No notifications</p>
             </li>
@@ -31,25 +35,29 @@
           <span class="nav-label-icon" *ngIf="msgNumber > 0">{{msgNumber}}</span>
 
           <ul id="dropdown1" class="dropdown-content col s12 collection">
-            <li class="collection-item avatar" *ngFor="let chat of chatList" (click)="GoToChatPage(chat.receiverId.username)">
-              <img src="http://res.cloudinary.com/dfn8llckr/image/upload/v{{chat.receiverId.profileImageVersion}}/{{chat.receiverId.profileImageId}}" class="circle responsive-img">
+            <li class="collection-item avatar" *ngFor="let chat of chatList"
+                (click)="GoToChatPage(chat.receiverId.username)">
+              <img
+                src="http://res.cloudinary.com/dfn8llckr/image/upload/v{{chat.receiverId.profileImageVersion}}/{{chat.receiverId.profileImageId}}"
+                class="circle responsive-img">
 
               <span class="title">
                 {{chat.receiverId.username}}
                 <a class="secondary-content">
-                  {{MessageDate(chat.msgId.message[chat.msgId.message.length-1].created)}}
+                  {{MessageDate(chat.msgId.message[chat.msgId.message.length - 1].created)}}
                 </a>
               </span>
 
-            <p>
-              {{chat.msgId.message[chat.msgId.message.length-1].body}}
-              <a class="secondary-content" *ngIf="!chat.msgId.message[chat.msgId.message.length -1].isRead && chat.receiverId.username === chat.msgId.message[chat.msgId.message.length-1].senderName" >
-                <i  class="material-icons">brightness_1</i>
-              </a>
-              <a class="secondary-content"  *ngIf="chat.msgId.message[chat.msgId.message.length -1].isRead">
-                <i class="material-icons">panorama_fish_eye</i>
-              </a>
-            </p>
+              <p>
+                {{chat.msgId.message[chat.msgId.message.length - 1].body}}
+                <a class="secondary-content"
+                   *ngIf="!chat.msgId.message[chat.msgId.message.length -1].isRead && chat.receiverId.username === chat.msgId.message[chat.msgId.message.length-1].senderName">
+                  <i class="material-icons">brightness_1</i>
+                </a>
+                <a class="secondary-content" *ngIf="chat.msgId.message[chat.msgId.message.length -1].isRead">
+                  <i class="material-icons">panorama_fish_eye</i>
+                </a>
+              </p>
 
             <li *ngIf="notifications.length <= 0">
               <p class="text">No notifications</p>
@@ -70,7 +78,8 @@
 
     <div class="nav-content">
       <div class="nav-div">
-        <img class="circle responsive-img" src="https://res.cloudinary.com/dfn8llckr/image/upload/v{{imageVersion}}/{{imageId}}">
+        <img class="circle responsive-img"
+             src="https://res.cloudinary.com/dfn8llckr/image/upload/v{{imageVersion}}/{{imageId}}">
       </div>
       <h1 class="profile-name">{{user.username}}</h1>
       <p class="user-text">Abbiamo impiegato un'ora per capire che avevamo messo un underscore anzichè un trattino.</p>

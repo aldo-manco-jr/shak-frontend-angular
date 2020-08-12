@@ -30,7 +30,7 @@
 
 .post {
   font-weight: bold;
-  color: #64b5f6;
+  color: #00796b;
 }
 
 .postImage {
@@ -40,13 +40,14 @@
   top: 10px !important;
 }
 
-.card_image {
-  width: 200px;
+.card-image {
+  width: 100%;
+  padding-right: 40px !important;
   height: auto !important;
 }
 
 .tabs a {
-  color: #64b5f6 !important;
+  color: #00796b !important;
   font-weight: bold;
   font-size: 16px;
 }
@@ -57,7 +58,7 @@
 }
 
 .tabs a .indicator {
-  background-color: #64b5f6 !important;
+  background-color: #00796b !important;
 }
 
 .collection {
