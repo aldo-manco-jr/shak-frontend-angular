@@ -66,10 +66,8 @@ export class TopStreamsComponent implements OnInit {
   likeOrUnlike(post, currentUser){
 
     if (!this.checkIfCurrentUserLikedPost(post.likes, currentUser.username)){
-      console.log(1);
       this.likePost(post);
     }else{
-      console.log(-1);
       this.unlikePost(post);
     }
   }
