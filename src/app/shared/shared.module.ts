@@ -16,10 +16,7 @@ import { TokenInterceptorService } from '../services/token-interceptor';
 @NgModule({
   declarations: [
     ToolbarComponent,
-    SideComponent,
-    PostFormComponent,
-    PostsComponent,
-    TopStreamsComponent
+    SideComponent
   ],
   imports: [
     CommonModule,
@@ -33,9 +30,6 @@ import { TokenInterceptorService } from '../services/token-interceptor';
   exports: [
     ToolbarComponent,
     SideComponent,
-    PostFormComponent,
-    PostsComponent,
-    TopStreamsComponent,
 
     CommonModule,
     FormsModule,
