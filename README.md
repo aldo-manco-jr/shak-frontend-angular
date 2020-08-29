@@ -19,26 +19,26 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Installation & Configuration MongoDB
 
-# Download & Install MongoDB Community Edition
+### Download & Install MongoDB Community Edition
 
 Download the MongoDB Community .msi installer from the following link:
 
 https://www.mongodb.com/try/download/community?tck=docs_server
 
-1 - In the Version dropdown, select the version of MongoDB to download.
-2 - In the Platform dropdown, select Windows.
-3 - In the Package dropdown, select msi.
-4 - Click Download.
-5 - Go to the directory where you downloaded the MongoDB installer (.msi file). By default, this is your Downloads directory.
-6 - Double-click the .msi file.
+1. In the Version dropdown, select the version of MongoDB to download.
+2. In the Platform dropdown, select Windows.
+3. In the Package dropdown, select msi.
+4. Click Download.
+5. Go to the directory where you downloaded the MongoDB installer (.msi file). By default, this is your Downloads directory.
+6. Double-click the .msi file.
 
-7 - During the installation:
-7.1 - Select Complete Setup
-7.1 - Select "Install MongoD as a Service"
-7.2 - Select "Run service as Network Service user"
-7.3 - Complete the installation without changing anything
+7. During the installation:
+   - Select Complete Setup
+   - Select "Install MongoD as a Service"
+   - Select "Run service as Network Service user"
+   - Complete the installation without changing anything
 
-8 - Open the terminal as administrator and run the following commands:
+8. Open the terminal as administrator and run the following commands:
 'cd C:\'
 'md "\data\db"'
 '"C:\Program Files\MongoDB\Server\%YOUR_MONGODB_VERSION%\bin\mongod.exe" --dbpath="c:\data\db"'
@@ -47,16 +47,16 @@ If you can see
 '[initandlisten] waiting for connections'
 then your MongoDB Database Server is ready to be used.
 
-# Install NodeJS & Angular
+### Install NodeJS & Angular
 
-1 - To install NodeJS, go to the following link:
+1. To install NodeJS, go to the following link:
 
 https://nodejs.org/en/
 
-2 - Download the latest version of NodeJS
-3 - Run the setup and complete installation without changing anything
-4 - Run Node.js terminal
-5 - Execute the command:
+2. Download the latest version of NodeJS
+3. Run the setup and complete installation without changing anything
+4. Run Node.js terminal
+5. Execute the command:
 'npm install -g @angular/cli'
 
 To check if both Node.js and Angular are correctly installed, you can execute the following commands:
@@ -64,9 +64,7 @@ To check if both Node.js and Angular are correctly installed, you can execute th
 'ng -v'
 if you can see the version of both, then they're correctly installed.
 
-
-
-# Build Your Own SHAK
+### Clone Project in your Computer
 
 The example git commands assume you have a GitHub account
 
@@ -81,19 +79,6 @@ After your project has finished cloning the front-end, go to the console and exe
 
 such that all the packages that we have used in this project, written in package.json file, will be automatically installed.
 
-
-# Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
+### Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
