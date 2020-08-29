@@ -76,7 +76,7 @@ After your project has finished cloning the front-end, go to the console and exe
 `npm install`  
 such that all the packages that we have used in the Front-End, written in **package.json**, will be automatically installed.  
   
-Now that the client is ready, **you have to write this command each time you want to run the client**:
+Now that the client is ready, **you have to write this command each time you want to run the client**:  
 `ng serve`  
 
 ### Back-End
@@ -89,7 +89,7 @@ After your project has finished cloning the back-end, go to the console and exec
 `npm install`  
 such that all the packages that we have used in the Back-End, written in **package.json**, will be automatically installed.  
   
-Now that the server is ready, **you have to write this command each time you want to run the server**:
+Now that the server is ready, **you have to write this command each time you want to run the server**:  
 `nodemon start`  
 
 ### Further help
