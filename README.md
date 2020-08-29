@@ -29,10 +29,10 @@ https://www.mongodb.com/try/download/community?tck=docs_server
 6. Double-click the .msi file.
 
 7. During the installation:
-   - Select Complete Setup
+   - Select **"Complete"** Setup
    - Select **"Install MongoD as a Service"**
    - Select **"Run service as Network Service user"**
-   - Complete the installation without changing anything
+   - Complete the installation without changing options
 
 8. Open the terminal as administrator and run the following commands:  
 `cd C:\`  
@@ -45,16 +45,15 @@ then your MongoDB Database Server is ready to be used.
 
 ## Install NodeJS & Angular
 
-1. To install **NodeJS**, go to the following link:
+1. To download and install **NodeJS**, go to the following link:
 
    https://nodejs.org/en/  
    
 2. Download the latest version of NodeJS
-3. Run the setup and complete installation without changing anything
+3. Run the setup and complete installation without changing options
 4. Open the Windows terminal (CMD)
-5. To install **Angular**, execute the command:  
+5. To install **Angular**, run the command:  
 `npm install -g @angular/cli`
-6. Press "y" and Angular will be installed
 
 To check if both Node.js and Angular are correctly installed, you can execute the following commands:  
 `npm -v`  
@@ -63,39 +62,39 @@ if you can see the version of both, then they're correctly installed.
 
 ## Clone Project in your Computer
 
-The example git commands assume you have a GitHub account
+The git commands described below assume that you have a GitHub account
 
 If you want to build your own version of SHAK, **you'll need to fetch the git sources both for Front-End and Back-End.**
 
 ### Front-End
 
-**Open a terminal and shift to the folder where you want to create your own SHAK.**
+**Open the terminal and change directory, choose the folder where you want to create your own SHAK.**
 
 To initialize your local repository using the SHAK source tree, clone the main repository with this command:  
 `git clone https://github.com/aldo-manco-jr/shak-frontend.git`  
 
-After your project has finished cloning the front-end, go to the console and execute the following command:  
+When the front-end clone is finished, run the following commands:  
 `cd shak-frontend`  
 `npm install`  
 `npm uninstall engine.io-client`  
 `npm install engine.io-client`  
-such that all the packages that we have used in the Front-End, written in **package.json**, will be automatically installed.  
+such that all the packages that we have used in the front-end application, written in **package.json**, will be automatically installed.  
   
 Now that the client is ready, **you have to write this command each time you want to run the client**:  
 `ng serve`  
 
 ### Back-End
 
-**Open a terminal and shift to the folder where you want to create your own SHAK.**
+**Open the terminal and change directory, choose the folder where you want to create your own SHAK.**
 
 To initialize your local repository using the SHAK source tree, clone the main repository with this command:  
 `git clone https://github.com/aldo-manco-jr/shak-backend.git`  
 
-After your project has finished cloning the back-end, go to the console and execute the following command:  
+When the back-end clone is finished, run the following commands:  
 `cd shak-backend`  
 `npm install`  
 `npm install -g nodemon`  
-such that all the packages that we have used in the Back-End, written in **package.json**, will be automatically installed.  
+such that all the packages that we have used in the back-end application, written in **package.json**, will be automatically installed.  
   
 Now that the server is ready, **you have to write this command each time you want to run the server**:  
 `nodemon start`  
