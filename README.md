@@ -87,7 +87,7 @@ To initialize your local repository using the SHAK source tree, clone the main r
 After your project has finished cloning the back-end, go to the console and execute the following command:  
 `cd %YOUR_CLONED_BACK-END_PATH%`  
 `npm install`  
-such that all the packages that we have used in the Back-End, written in package.json, will be automatically installed.  
+such that all the packages that we have used in the Back-End, written in **package.json**, will be automatically installed.  
   
 Now that the server is ready, **you have to write this command each time you want to run the server**:
 `nodemon start`  
