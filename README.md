@@ -8,16 +8,14 @@ Used with discretion and precision, it could revolutionize the way many students
 Collecting all the material concerning the subjects helps, first of all, not to spend useless time in a redundant search in the vast world of web. The evaluation of documents, the possibility of being able to easily retrieve them from favorites, the discussions in comments between users, can help the student to discover other material, that can lead to the solution of the problems sought in a more immediate way.
 
 SHAK has an architecture client/server where
-- Front-End (Client) was developed in Angular 9.1.0, Materialize CSS
-- Back-End (Server) was developed in NodeJS
+- **Front-End (Client)** was developed in **Angular 9.1.0, Materialize CSS**
+- **Back-End (Server)** was developed in **NodeJS**
 
 Made by Aldo Manco, Francesco Ferrini, Victor Ivan Conde
 
 # Build Your Own SHAK 
 
 ## Installation & Configuration MongoDB
-
-### Download & Install MongoDB Community Edition
 
 Download the MongoDB Community .msi installer from the following link:  
 
@@ -32,8 +30,8 @@ https://www.mongodb.com/try/download/community?tck=docs_server
 
 7. During the installation:
    - Select Complete Setup
-   - Select "Install MongoD as a Service"
-   - Select "Run service as Network Service user"
+   - Select **"Install MongoD as a Service"**
+   - Select **"Run service as Network Service user"**
    - Complete the installation without changing anything
 
 8. Open the terminal as administrator and run the following commands:  
@@ -45,16 +43,16 @@ If you can see
 `[initandlisten] waiting for connections`  
 then your MongoDB Database Server is ready to be used.
 
-### Install NodeJS & Angular
+## Install NodeJS & Angular
 
-1. To install NodeJS, go to the following link:
+1. To install **NodeJS**, go to the following link:
 
    https://nodejs.org/en/  
    
 2. Download the latest version of NodeJS
 3. Run the setup and complete installation without changing anything
 4. Run Node.js terminal
-5. Execute the command:
+5. To install **Angular**, execute the command:
 'npm install -g @angular/cli'
 
 To check if both Node.js and Angular are correctly installed, you can execute the following commands:  
@@ -62,37 +60,37 @@ To check if both Node.js and Angular are correctly installed, you can execute th
 `ng -v`  
 if you can see the version of both, then they're correctly installed.
 
-### Clone Project in your Computer
+## Clone Project in your Computer
 
 The example git commands assume you have a GitHub account
 
-If you want to build your own version of SHAK, you'll need to fetch the git sources both for Front-End and Back-End.
+If you want to build your own version of SHAK, **you'll need to fetch the git sources both for Front-End and Back-End.**
 
-#### Front-End
+### Front-End
 
-To initialize your local repository using the SHAK source tree, clone the main repository in your IDE with the command:  
+To initialize your local repository using the SHAK source tree, clone the main repository with this command:  
 `git clone https://github.com/aldo-manco-jr/shak-frontend.git`  
 
 After your project has finished cloning the front-end, go to the console and execute the following command:  
 `cd %YOUR_CLONED_FRONT-END_PATH%`  
 `npm install`  
+such that all the packages that we have used in the Front-End, written in **package.json**, will be automatically installed.  
   
-Now that the client is ready, you have to run this command to run the client:
+Now that the client is ready, **you have to write this command each time you want to run the client**:
 `ng serve`  
-such that all the packages that we have used in the Front-End, written in package.json, will be automatically installed.
 
-#### Back-End
+### Back-End
 
-To initialize your local repository using the SHAK source tree, clone the main repository in your IDE with the command:  
+To initialize your local repository using the SHAK source tree, clone the main repository with this command:  
 `git clone https://github.com/aldo-manco-jr/shak-backend.git`  
 
 After your project has finished cloning the back-end, go to the console and execute the following command:  
 `cd %YOUR_CLONED_BACK-END_PATH%`  
 `npm install`  
-
-Now that the client is ready, you have to run this command to run the client:
+such that all the packages that we have used in the Back-End, written in package.json, will be automatically installed.  
+  
+Now that the server is ready, **you have to write this command each time you want to run the server**:
 `nodemon start`  
-such that all the packages that we have used in the Back-End, written in package.json, will be automatically installed.
 
 ### Further help
 
