@@ -15,7 +15,7 @@ Made by Aldo Manco, Francesco Ferrini, Victor Ivan Conde
 
 # Build Your Own SHAK 
 
-## Installation & Configuration MongoDB
+## Installation & Configuration of MongoDB
 
 Download the MongoDB Community .msi installer from the following link:  
 
