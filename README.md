@@ -77,8 +77,8 @@ To initialize your local repository using the SHAK source tree, clone the main r
 After your project has finished cloning the front-end, go to the console and execute the following command:  
 `cd shak-frontend`  
 `npm install`  
-`npm uninstall engine.io`  
-`npm install engine.io`  
+`npm uninstall engine.io-client`  
+`npm install engine.io-client`  
 such that all the packages that we have used in the Front-End, written in **package.json**, will be automatically installed.  
   
 Now that the client is ready, **you have to write this command each time you want to run the client**:  
