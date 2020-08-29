@@ -51,9 +51,10 @@ then your MongoDB Database Server is ready to be used.
    
 2. Download the latest version of NodeJS
 3. Run the setup and complete installation without changing anything
-4. Run Node.js terminal
-5. To install **Angular**, execute the command:
-'npm install -g @angular/cli'
+4. Open the Windows terminal (CMD)
+5. To install **Angular**, execute the command:  
+`npm install -g @angular/cli`
+6. Press "y" and Angular will be installed
 
 To check if both Node.js and Angular are correctly installed, you can execute the following commands:  
 `npm -v`  
@@ -68,12 +69,16 @@ If you want to build your own version of SHAK, **you'll need to fetch the git so
 
 ### Front-End
 
+**Open a terminal and shift to the folder where you want to create your own SHAK.**
+
 To initialize your local repository using the SHAK source tree, clone the main repository with this command:  
 `git clone https://github.com/aldo-manco-jr/shak-frontend.git`  
 
 After your project has finished cloning the front-end, go to the console and execute the following command:  
-`cd %YOUR_CLONED_FRONT-END_PATH%`  
+`cd shak-frontend`  
 `npm install`  
+`npm uninstall engine.io`  
+`npm install engine.io`  
 such that all the packages that we have used in the Front-End, written in **package.json**, will be automatically installed.  
   
 Now that the client is ready, **you have to write this command each time you want to run the client**:  
@@ -81,16 +86,24 @@ Now that the client is ready, **you have to write this command each time you wan
 
 ### Back-End
 
+**Open a terminal and shift to the folder where you want to create your own SHAK.**
+
 To initialize your local repository using the SHAK source tree, clone the main repository with this command:  
 `git clone https://github.com/aldo-manco-jr/shak-backend.git`  
 
 After your project has finished cloning the back-end, go to the console and execute the following command:  
-`cd %YOUR_CLONED_BACK-END_PATH%`  
+`cd shak-backend`  
 `npm install`  
+`npm install -g nodemon`  
 such that all the packages that we have used in the Back-End, written in **package.json**, will be automatically installed.  
   
 Now that the server is ready, **you have to write this command each time you want to run the server**:  
 `nodemon start`  
+
+If `nodemon start` doesn't work, try this command:  
+`npm config get prefix`  
+copy the path that terminal gives you back and replace `C:\Users\%USERNAME%\AppData\Roaming\npm;` of following command with it:  
+`set PATH=%PATH%;C:\Users\%USERNAME%\AppData\Roaming\npm;`  
 
 ### Further help
 
