@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ToolbarComponent } from '../components/toolbar/toolbar.component';
-import { SideComponent } from '../components/side/side.component';
-import { PostFormComponent } from '../components/post-form/post-form.component';
-import { PostsComponent } from '../components/posts/posts.component';
-import { TopStreamsComponent } from '../components/top-streams/top-streams.component';
+import { ToolbarComponent } from '../components/Shared/toolbar/toolbar.component';
+import { SideComponent } from '../components/Shared/side/side.component';
+import { PostFormComponent } from '../components/Stream/post-form/post-form.component';
+import { PostsComponent } from '../components/Stream/posts/posts.component';
+import { TopStreamsComponent } from '../components/Stream/top-streams/top-streams.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
