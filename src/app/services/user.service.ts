@@ -3,8 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {observableToBeFn} from "rxjs/internal/testing/TestScheduler";
 
-// const BASE_URL = 'http://localhost:3000/api/shak'
-const BASE_URL = '/api/shak';
+const BASE_URL = 'http://localhost:3000/api/shak'
 
 @Injectable({
   providedIn: 'root'
