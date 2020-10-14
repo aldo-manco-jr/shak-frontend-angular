@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
   - Dichiarazione del componente principale
   - Importazione di tutti i moduli che compongono la web-app
   - Caricamento in memoria del componente principale
+  - Creazione del cookie lato front-end
  */
 
 @NgModule({
