@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-const BASE_URL = 'http://localhost:3000/api/shak'
+const BASE_URL = 'http://ec2-15-237-74-79.eu-west-3.compute.amazonaws.com/api/shak'
 
 @Injectable({
   providedIn: 'root'
